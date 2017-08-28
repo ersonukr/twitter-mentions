@@ -1,0 +1,43 @@
+<div id="reply-mention" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><%= tweet.text %></h4>
+      </div>
+      <%= form_with url: reply_mentions_path do |form| %>
+          <div class="modal-body">
+            <% user_size = 140 - (tweet.tweet_user_name.size+1) %>
+            <div class="input-group input-group-lg">
+              <span class="input-group-addon">Reply to @<%= tweet.tweet_user_name %></span>
+              <%= form.text_area :text, id: "text-content", class: "form-control", onKeyup: "count_remaining_character('#{user_size}')", maxlength: user_size %>
+              <%= hidden_field_tag :mention_id, tweet.id %>
+            </div>
+            <div id="character-count" align="right"><%= user_size %></div>
+          </div>
+          <div class="modal-footer">
+            <%= form.submit 'Reply', class: "btn btn-success" %>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+
+<script>
+    function count_remaining_character(u_size) {
+        var user_name = u_size;
+        var max_length = user_name;
+        var character_entered = $('#text-content').val().length;
+        var character_remaining = max_length - character_entered;
+        $('#character-count').html(character_remaining);
+        if (max_length < character_entered) {
+            $('#character-count').css('color', '#FF0000');
+        } else {
+            $('#character-count').css('color', '#A0A0A0');
+        }
+    }
+</script>

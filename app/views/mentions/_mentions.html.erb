@@ -1,0 +1,20 @@
+<% if mentions.present? %>
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <center><h1>Mentions</h1></center>
+      <table class="table table-striped">
+        <thead>
+        <th>User</th>
+        <th>Mention</th>
+        <th>Tweeted at</th>
+        <th>Action</th>
+        </thead>
+        <% mentions.each do |mention| %>
+            <%= render partial: 'mention', locals: {mention: mention} %>
+        <% end %>
+      </table>
+    </div>
+    <div class="col-md-2"></div>
+<% else %>
+    <center>No Mentions found for thi user</center>
+<% end %>

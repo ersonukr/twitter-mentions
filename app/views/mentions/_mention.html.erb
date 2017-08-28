@@ -1,0 +1,9 @@
+<tr class="success my-table">
+  <td>@<%= mention.tweet_user_name %></td>
+  <td><%= mention.text %></td>
+  <td><%= mention.tweeted_at.strftime('%m-%d-%Y') %></td>
+  <td>
+    <button class="btn btn-success" data-toggle="modal" data-target="#reply-mention">Reply</button>
+  </td>
+<%= render partial: 'reply_mention', locals: {tweet: mention} %>
+</tr>

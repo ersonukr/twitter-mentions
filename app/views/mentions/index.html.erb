@@ -1,0 +1,17 @@
+<div class='container'>
+  <div class='row top-padding'>
+    <div class='col-md-8'></div>
+    <div class='col-md-4'>
+      <button class='btn btn-success' id='fetch-mentions'>Fetch Mentions</button>
+      <%= link_to 'Log Out', destroy_path, method: :delete, class: 'btn btn-danger' %>
+    </div>
+  </div>
+  <div class='row' id='user_mentions'>
+    <%= render partial: 'mentions', locals: {mentions: @mentions} %>
+  </div>
+</div>
+
+<script>
+    fetch_mentions();
+</script>
+
